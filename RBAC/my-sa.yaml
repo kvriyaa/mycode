@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+ name: my-sa-sample
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-sa-sample
+  annotations:
+    kubernetes.io/service-account.name: "my-sa-sample"
+type: kubernetes.io/service-account-token

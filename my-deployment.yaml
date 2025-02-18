@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deploy
+  labels:   # Corrected from 'label' to 'labels'
+    app: my-app-kavi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:  # Corrected from 'matchLabel' to 'matchLabels'
+      app: app-pod-kavi
+  template:
+    metadata:
+      labels:   # Corrected from 'label' to 'labels'
+        app: app-pod-kavi
+    spec:
+      containers:   # Corrected the indentation here
+      - name: nginx   # Added space after '-' and corrected the indentation here
+        image: nginx:1.12   # Removed extra space after ':' and corrected the indentation here
+        ports:
+        - containerPort: 80   # Added space after '-' and corrected the indentation here
+

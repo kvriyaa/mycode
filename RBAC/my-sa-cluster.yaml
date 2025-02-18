@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+ name: my-sa-cluster
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-sa-cluster
+  annotations:
+    kubernetes.io/service-account.name: "my-sa-cluster"
+type: kubernetes.io/service-account-token

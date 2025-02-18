@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ip-app-deployment-cm-file
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app-cm-file
+  template:
+    metadata:
+      labels:
+        app: my-app-cm-file
+    spec:
+      containers:
+      - name: my-ip-apph-cm
+        image: kvriyaa/ip_app:4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+           name: my-config-env  

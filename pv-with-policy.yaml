@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: my-pv-with-policy
+spec:
+ persistentVolumeReclaimPolicy: Delete
+ storageClassName: local
+ accessModes:
+ - ReadWriteMany
+ capacity:
+  storage: 2Gi
+ hostPath:
+  path: '/home/ubuntu/'

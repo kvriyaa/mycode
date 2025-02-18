@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: my-headless
+spec:
+ clusterIP: None
+ selector:
+  app: my-app-headless
+ ports:
+  - name: http
+    port: 30007
+    targetPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ip-app-deployment-headless
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app-headless
+  template:
+    metadata:
+      labels:
+        app: my-app-headless
+    spec:
+      containers:
+      - name: my-ip-apph
+        image: kvriyaa/ip_app:4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+

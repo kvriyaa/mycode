@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ip-app-deployment-cm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app-cm
+  template:
+    metadata:
+      labels:
+        app: my-app-cm
+    spec:
+      containers:
+      - name: my-ip-apph
+        image: kvriyaa/ip_app:4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: Env
+          valueFrom:
+           configMapKeyRef:
+            name: my-config-env
+            key: APP_NAME

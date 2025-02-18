@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pvc-volume-with-policy
+spec:
+  containers:
+  - name: ip-app
+    image: kvriyaa/ip_app:4
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: my-pvc-policy
+      mountPath: /app/pvc-volume
+  volumes: 
+  - name: my-pvc-policy
+    persistentVolumeClaim:
+        claimName: my-pvc-with-policy 

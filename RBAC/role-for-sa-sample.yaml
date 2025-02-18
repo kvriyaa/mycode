@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role # If kind is speciified as Role then this role is namespace specific not cluster specific 
+metadata:
+  name: pod-service-role-sample
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "services"]
+  verbs: ["get", "watch", "list", "patch"]

@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: my-clusterip4
+ namespace: kavi
+spec:
+ type: ClusterIP
+ selector:
+  app: my-app4
+ ports:
+  - name: http
+    port: 30002
+    targetPort: 9090
+  
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ip-app-deployment-clusterip4
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app4
+  template:
+    metadata:
+      labels:
+        app: my-app4
+    spec:
+      containers:
+      - name: my-ip-app4
+        image: kvriyaa/ip_app:4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+
+
+
+
+
